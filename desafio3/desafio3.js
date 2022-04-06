@@ -14,8 +14,7 @@ class Contenedor {
   async getAll() {
     try {
       const data = await fs.promises.readFile(this.nombreArchivo, 'utf8');
-      //   const json = JSON.parse(data);
-      //   return json;
+
       return data;
     } catch (error) {
       throw error;
