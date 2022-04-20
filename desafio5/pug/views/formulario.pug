@@ -1,0 +1,27 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  title Ejs
+  link(rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css' integrity='sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l' crossorigin='anonymous')
+.container.mt-3
+  .jumbotron
+    h1(style='color: blue') Ingrese datos
+    br
+    form(action='/productos' method='post')
+      .form-group
+        label(for='title')
+          b Title
+        input#title.form-control(type='text' name='title')
+      .form-group
+        label(for='price')
+          b Price
+        input#price.form-control(type='number' name='price')
+      .form-group
+        label(for='thumbnail')
+          b Thumbnail
+        input#thumbnail.form-control(type='text' name='thumbnail')
+      button.btn.btn-success.mt-3.mb-5(type='submit')
+        | Enviar
+      button.btn.btn-primary.mt-3.mb-5(type='button' onclick="window.location.href='/productos'")
+        | Lista
