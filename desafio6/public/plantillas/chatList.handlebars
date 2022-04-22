@@ -1,0 +1,13 @@
+{{#if chats}}
+<div class="table-responsive">
+    <ul class="mb-5" style="list-style-type: none;">
+        {{#each chats}}
+        <li>
+            <span style="font-weight: bold;color:blue">{{this.email}}<span style="color:brown"> [{{this.fecha}}]</span> : <span style="font-style: italic;color:green">{{this.mensaje}}</span></span>
+        </li>
+        {{/each}}
+    </ul>
+</div>
+{{else}}
+<h3>Nadie hablo aun!!! Se el primero =)</h1>
+{{/if}} 
