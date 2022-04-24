@@ -10,8 +10,8 @@ const { Contenedor } = require('./contenedor');
 
 const productos = [];
 const chats = [];
-const contenedorProductos = new Contenedor('src/productos.txt');
-const contenedorChats = new Contenedor('src/chats.txt');
+const contenedorProductos = new Contenedor('productos');
+const contenedorChats = new Contenedor('chats');
 
 const main = async () => {
   productos.push(...(await contenedorProductos.getAll()));

@@ -1,8 +1,8 @@
 const fs = require('fs');
 
 class Contenedor {
-  constructor(nombreArchivo) {
-    this.nombreArchivo = nombreArchivo;
+  constructor(nombreArchivo, extension = '.txt') {
+    this.nombreArchivo = 'src/' + nombreArchivo + extension;
   }
 
   async save(data) {
@@ -34,7 +34,8 @@ class Contenedor {
       const json = JSON.parse(data);
       return json;
     } catch (error) {
-      throw error;
+      await fs.promises.writeFile(this.nombreArchivo, JSON.stringify([]));
+      return [];
     }
   }
   async deleteById(id) {
