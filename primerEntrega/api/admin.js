@@ -1,11 +1,12 @@
-let esAdmin = true;
+let esAdmin = false;
 
 export const soloParaAdmins = (req, res, next) => {
   if (esAdmin) {
     next();
   } else {
-    res
-      .sendStatus(403)
-      .json({ error: -1, descripcion: "ruta 'x' método 'y' no autorizada" });
+    res.status(403).json({
+      error: -1,
+      descripcion: `ruta ${req.url} método ${req.method} no autorizada`,
+    });
   }
 };

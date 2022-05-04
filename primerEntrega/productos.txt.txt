@@ -1,1 +1,0 @@
-[{"nombre":"producto1Bis","desc":"Este es el producto 1","url":"www.facebook1.com","precio":"12","stock":"5","id":1},{"nombre":"producto1","desc":"Este es el producto 1","url":"www.facebook1.com","precio":"12","stock":"5","id":2},{"nombre":"producto2","desc":"Este es el producto 1","url":"www.facebook1.com","precio":"12","stock":"5","id":3}]

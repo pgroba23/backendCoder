@@ -2,19 +2,14 @@ import fs from 'fs';
 
 class Contenedor {
   constructor(nombreArchivo, extension = '.txt') {
-    this.nombreArchivo = 'src/' + nombreArchivo + extension;
+    this.nombreArchivo = nombreArchivo + extension;
   }
 
   async save(data) {
     try {
-      const json = await fs.promises.readFile(this.nombreArchivo, 'utf8');
-      const id = JSON.parse(json).length + 1;
-      const result = [...JSON.parse(json), { ...data, id }];
-      await fs.promises.writeFile(this.nombreArchivo, JSON.stringify(result));
+      await fs.promises.writeFile(this.nombreArchivo, JSON.stringify(data));
     } catch (err) {
-      const id = 1;
-      const result = [{ ...data, id }];
-      await fs.promises.writeFile(this.nombreArchivo, JSON.stringify(result));
+      throw error;
     }
   }
 

@@ -4,7 +4,8 @@ import { soloParaAdmins } from '../api/admin.js';
 
 const productos = Router();
 const data = [];
-const contenedorProductos = new Contenedor('../productos.txt');
+const contenedorProductos = new Contenedor('productos');
+let id = 0;
 
 const main = async () => {
   data.push(...(await contenedorProductos.getAll()));
@@ -24,15 +25,15 @@ productos.get('/:id', (req, res) => {
 });
 
 productos.post('/', soloParaAdmins, async (req, res) => {
-  data.push({ ...req.body, id: data.length + 1 });
-  await contenedorProductos.save(req.body);
+  data.push({ ...req.body, id: new Date().getTime() });
+  await contenedorProductos.save(data);
   res.json(data[data.length - 1]);
 });
 
 productos.put('/:id', soloParaAdmins, async (req, res) => {
   const index = data.findIndex((item) => item.id === parseInt(req.params.id));
   data[index] = { ...data[index], ...req.body };
-  await contenedorProductos.save(data[index]);
+  await contenedorProductos.save(data);
   res.json(data[index]);
 });
 
