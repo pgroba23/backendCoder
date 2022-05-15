@@ -1,0 +1,97 @@
+
+#crear una base de datos llamada ecommerce que contenga dos colecciones: mensajes y productos
+
+use ecommerce
+db.createCollection("mensajes")
+db.createCollection("productos")
+
+#Agregar 10 documentos con valores distintos a las colecciones mensajes y productos. El formato de los documentos debe estar en correspondencia con el que venimos utilizando en el entregable con base de datos MariaDB. 
+#Definir las claves de los documentos en relación a los campos de las tablas de esa base. En el caso de los productos, poner valores al campo precio entre los 100 y 5000 pesos(eligiendo valores intermedios, ej: 120, 580, 900, 1280, 1700, 2300, 2860, 3350, 4320, 4990). 
+
+db.mensajes.insertMany( [
+{email: 'pepe@gmail.com',mensaje:'Hola!', fecha: new Timestamp()},
+{email: 'roberto@gmail.com',mensaje:'Hola pepe!', fecha: new Timestamp()},
+{email: 'pepe@gmail.com',mensaje:'Como andas?!', fecha: new Timestamp()},
+{email: 'roberto@gmail.com',mensaje:'Bien, vos?', fecha: new Timestamp()},
+{email: 'pepe@gmail.com',mensaje:'Todo joya', fecha: new Timestamp()},
+{email: 'roberto@gmail.com',mensaje:'Me alegro! La flia?', fecha: new Timestamp()},
+{email: 'pepe@gmail.com',mensaje:'Bien, tirando', fecha: new Timestamp()},
+{email: 'roberto@gmail.com',mensaje:'Para no aflojar dicen..', fecha: new Timestamp()},
+{email: 'pepe@gmail.com',mensaje:'Exacto! jaja', fecha: new Timestamp()},
+{email: 'roberto@gmail.com',mensaje:'Jajaja', fecha: new Timestamp()}
+])
+db.productos.insertMany( [
+{nombre: 'Remera', desc:'Remera manga larga',foto: 'remeralarga.jpg', precio: 120, stock: 5},
+{nombre: 'Pantalon', desc:'Pantalon largo',foto: 'pantalonlargo.jpg', precio: 500, stock: 15},
+{nombre: 'Chomba', desc:'Chomba manga larga',foto: 'chombalarga.jpg', precio: 127, stock: 25},
+{nombre: 'Gorro', desc:'Gorro de lana',foto: 'gorro.jpg', precio: 700, stock: 35},
+{nombre: 'Zapatillas', desc:'Zapatillas deportivas',foto: 'zapatillasnike.jpg', precio: 1200, stock: 45},
+{nombre: 'Medias', desc:'Medias larga',foto: 'mediaslargas.jpg', precio: 102, stock: 55},
+{nombre: 'Boxer', desc:'Boxers',foto: 'boxers.jpg', precio: 3698, stock: 65},
+{nombre: 'Camisa', desc:'Camisa manga larga',foto: 'camisalarga.jpg', precio: 598, stock: 75},
+{nombre: 'Traje', desc:'Traje formal de gala',foto: 'trajegala.jpg', precio: 223, stock: 85},
+{nombre: 'Corbata', desc:'Corbata simpsons',foto: 'corbatasimpsons.jpg', precio: 1500, stock: 95}
+])
+
+#Listar todos los documentos en cada colección.
+db.mensajes.find()
+db.productos.find()
+
+#Mostrar la cantidad de documentos almacenados en cada una de ellas.
+db.mensajes.countDocuments()
+db.productos.countDocuments()
+
+#Agregar un producto más en la colección de productos
+db.productos.insertOne({nombre: 'Pijama', desc:'Pijama manga larga',foto: 'pijamalarga.jpg', precio: 666, stock: 16})
+
+#Listar los productos con precio menor a 1000 pesos
+db.productos.find({"precio":{$lt: 1000}},{"nombre":1})
+
+#Listar los productos con precio entre los 1000 a 3000 pesos
+db.productos.find({$and: [{"precio":{$gt: 1000}},{"precio":{$lt: 3000}}]},{"nombre":1})
+
+#Listar los productos con precio mayor a 3000 pesos
+db.productos.find({"precio":{$gt: 3000}},{"nombre":1})
+
+#Realizar una consulta que traiga sólo el nombre del tercer producto más barato.
+db.productos.find().sort({"precio":1}).skip(2).limit(1)
+
+#Hacer una actualización sobre todos los productos, agregando el campo stock a todos ellos con un valor de 100
+db.productos.updateMany({},{$set:{"stock":100}})
+
+#Cambiar el stock a cero de los productos con precios mayores a 4000 pesos
+db.productos.updateMany({"precio":{$gt: 4000}},{$set:{"stock":0}})
+
+#Borrar los productos con precio menor a 1000 pesos
+db.productos.deleteMany({"precio":{$lt: 1000}})
+
+
+#Crear un usuario 'pepe' clave: 'asd456' que sólo pueda leer la base de datos ecommerce. Verificar que pepe no pueda cambiar la información.
+use admin
+
+db.createUser(
+  {
+    user: "pepe",
+    pwd: "asd456",
+    roles: [
+       { role: "read", db: "ecommerce" }
+    ]
+  }
+)
+
+exit
+mongosh -u pepe -p asd465
+db.productos.insertOne({nombre: 'Pijama', desc:'Pijama manga larga',foto: 'pijamalarga.jpg', precio: 666, stock: 16})
+#Tira error
+
+
+
+
+
+
+
+
+
+
+
+
