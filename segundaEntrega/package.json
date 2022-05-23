@@ -1,0 +1,23 @@
+{
+  "name": "primerentrega",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon api/server.js",
+    "start:mem": "PERS=memoria nodemon api/server.js",
+    "start:mongo": "PERS=mongodb nodemon api/server.js",
+    "start:fire": "PERS=firebase nodemon api/server.js",
+    "start:arc": "PERS=archivo nodemon api/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "firebase-admin": "^10.2.0",
+    "mongoose": "^6.3.3"
+  }
+}
