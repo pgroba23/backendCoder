@@ -1,10 +1,11 @@
 import fs from 'fs';
-import Contenedor from './contenedor';
+import Contenedor from './contenedor.js';
 
 export default class ContenedorArchivo extends Contenedor {
   constructor(nombre, ruta = './') {
     super(nombre);
-    this.ruta = ruta + this.nombre + '.txt';
+    //this.ruta = ruta + this.nombre + '.txt';
+    this.ruta = `${ruta}/${this.nombre}.txt`;
     this.data = [];
   }
   async #leer() {
@@ -30,7 +31,7 @@ export default class ContenedorArchivo extends Contenedor {
 
   async listar(id) {
     await this.#leer();
-    return this.data.find((item) => item.id === id);
+    return this.data.find((item) => item.id === parseInt(id));
   }
 
   async guardar(data) {

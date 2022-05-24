@@ -1,4 +1,4 @@
-let esAdmin = false;
+let esAdmin = true;
 
 export const soloParaAdmins = (req, res, next) => {
   if (esAdmin) {

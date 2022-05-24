@@ -1,7 +1,8 @@
-import { Contenedor } from './contenedorArchivo';
+import Contenedor from './Contenedor.js';
 
 export default class ContenedorMemoria extends Contenedor {
   constructor() {
+    super();
     this.data = [];
   }
   async listarAll() {

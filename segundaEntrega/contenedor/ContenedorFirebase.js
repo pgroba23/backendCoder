@@ -1,5 +1,6 @@
-import Contenedor from './contenedor';
+import Contenedor from './contenedor.js';
 import admin from 'firebase-admin';
+import config from '../config.js';
 
 admin.initializeApp({
   credential: admin.credential.cert(config.firebase),
@@ -11,6 +12,7 @@ const asObj = (doc) => ({ id: doc.id, ...doc.data() });
 
 export default class ContenedorFirebase extends Contenedor {
   constructor(nombre) {
+    super();
     this.collection = db.collection(nombre);
   }
 
@@ -24,19 +26,19 @@ export default class ContenedorFirebase extends Contenedor {
 
   async listar(id) {
     const snapshot = await this.collection.doc(id).get();
-    return asObj(snapshot.data());
+    return snapshot.data();
   }
 
   async guardar(data) {
-    await this.collection.add(data);
+    await this.collection.doc(String(data.id)).set(data);
   }
 
   async actualizar(data) {
-    await this.collection.doc(data.id).update(data);
+    await this.collection.doc(String(data.id)).update(data);
   }
 
   async eliminar(id) {
-    await this.collection.doc(id).delete();
+    await this.collection.doc(String(id)).delete();
   }
 
   async eliminarAll() {

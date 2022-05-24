@@ -3,20 +3,21 @@ export default {
     path: './DB',
   },
   mongodb: {
-    cnxStr: 'mongodb://root:mongopassword@localhost:27017/coderhouse',
+    cnxStr:
+      'mongodb://admin:mongopassword@localhost:27017/coderhouse?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false',
     options: {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      useCreateIndex: true,
+      //useCreateIndex: true,
       serverSelectionTimeoutMS: 5000,
     },
   },
   firebase: {
     type: 'service_account',
     project_id: 'coderhouse-61825',
-    private_key_id: '8d2f0a89d8c7b42b8a7abc8dc6a02958c59b1e26',
+    private_key_id: 'b45a980ef6fbf4e890557118dd4cd243d893f25a',
     private_key:
-      '-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCRMNU3gNPkPNOv\nwWlqRCm4x3ym2/pH1d5MvaLOpTIqGX6R0QEp7EG0WdzLdPYGCMYIzokb6Rw+fFtM\nlQPooRJuj9RUWBO+4OH8R0hrWS4HXhsYE3KNPTiMUlMU9OpuTLd+kOzyZpSFxU4C\nR84Uj0wJKbt6TDeoRJVHT6dUyeuLual6jx/Px9I/soGGqRo0zTxfIcvaFtTt5Img\nvA3W9T54Y7R49vD534YYxCeWpZGaNgs7K4s2Sb6SWJUPS3X0eLWDzBzP92BWYewV\naJ4/6OWcgSvAfDJT9Mcnd92JDi7Uf+AALHtVB5lbg5rqGrLeOYIiszm8kQlqtAId\ns8huvBWHAgMBAAECggEACo/yjZrJ+hT8Erwk+WhuCermmZOajeFJeRcOogPd4LbW\nwLA4v8kChVFIQRDdg6uIZJmfMIWb2rvclHdUFSH/9O/HsunEE03JguXYpzPnUlKO\nnAjGJkTpjo5qoYqpB08oxi9a3XjdndcFtCAZ0OBqgqbOObkTuiJgeGibXrgLHQX6\nTcQ3fbBRLZy3Ntnx+PCHkKUVk6F6QbN9cdQZZrRBFhpAF4oHxo99cwJXFCNyUIya\nCvHyCmCMxypCi3TycJCw+Cs1z5dRTfgYUOKfojsHC5ryrnEBMo1dqQvGHivucHwy\n3YRIrF7bpyr5t7DfS/s/tHb0kdfXCg4PkjGhDdGtEQKBgQDDPDaH+dxGC5Y+eMvs\nnaBJLYfJjSf0QZNARYUitljmO8HWzhQwpHXkZh/2oNBU0U5DWnNLJ7XGP30FWR9E\n3cAcB5PiEfOzXSfjr4Mfbs4+1xft4q85Z5hexsl84K7jTabGvFp8OhNOKbybc/vq\nDcOufdj7rF5aLlmn75l7ZK62nwKBgQC+YThKaZd8fhub6ClYUe+MqaWPNinb1LpJ\nzfenRHYyWERj6pjnWylgRT13y0vTT2FQhSubFqd9IHQyNT4Kvat4IVcRxAV0BgU8\nO5H0Lx/YVV4qQ8Q4uAghg49C7nWimQQybWh1KdXGmiUGJ8iIcRq5HbhpqBRIE0ns\nfEEJnCvAGQKBgQCZOzAdhvjgrQVt4MdE3e5IoQibI0PBjJoy7p1wwieCBFK98h6c\nkufIrHLX0h3RBDnl2R72VKNxhrDsOqe1GEpIdZYW8DoSg8HkDQPf7srHPXCVj74x\nUuKfOGw5q+r3kiGch4aJS9eNGGrko6KLb+Qulq1v0jh3lTte+EnBNCOARwKBgF5u\nJJisVWp3tsQXXOKlCZgQ0cD+UbbrhldzZWK/T41bQNj6lUs0aYqJ7ZpM6Vhv6Eoj\nM+TiUMN85IW+6P405CdbCjAStc296rzco2GmOjp45ZM7N8oWZloRQm8ljo3PLkjB\nAe4TiSjQbormEs6yo1msxzsJFr5FawZ0/2F/6CeJAoGAYIx+FnnT0bRzB+Ul3/YB\n5uWtcaFWAmwuFAhfLBo+tjk6K1HmOi47wAwyaTm8aRV2JuGngTCsZayCBR2ACWUe\nu2NUMiZ8p3OrComID/3sVETtIF0Loa1uS6t/YtNYoZBBSXFBrhYsIZOpFooyUFaP\nbU1/E9C3H8AymrWjk25hDO8=\n-----END PRIVATE KEY-----\n',
+      '-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCae6jFhkny14DJ\nOt5REm7ZXUGQQedQV0rd3Xjpa+hZ79tPvn2yP5hNtxXddUPgI/sNuElQK1h5TG/w\nw3bt8lRljpqDxvDoOeb423uE+NyMmyp1xgTPDCbHVSXukokDQ8y0CY0LtywK+Z6i\nDrHto+UxfOqUd78GqzYi7VEN/ReUxe4khjMYQRgZj5tTogjkJgi9NKzDFva1iEWq\nNJWAy2JH+bAhWpEFDBlduvTLJ4L1/806dt9JBgBsbx42Wsw0md1uRGDOr+WefFAo\nn8GUzTE7Fa6suRJkLljy6TTN3nS9ehnf0/NDQfM97/eSOV6AGP5Hod4ub9wACMah\n4aS4Gu4vAgMBAAECgf81JJliBJ0nhrbYHGg8JixAM+WeVEDHUYSAzmtBWN23rFQ9\nK6ASBwHEQuIgkTaVKP68/cqhDeHZLdjL2E/vRvZsPaJhboYcB/Fb7vH1Zg1n6uf0\nrQgLh0S+xUetqHbxQi5tnrleLD7HQ35OyhSvvI/XdmXEz2zWiSCN9GsP7WdzksUq\n75m6OQuFIdJt8oEoUQJ6z8hhEHbH0rRHC0dYaN5Hq5EKJWnM4EoG40XzlGmvSu9S\n21kmPf0OrFhlrscGojIl9I4EBks+vyYAzAjK5FPe0hDwaLG4qXcHJQ/SanBdFjyb\nY0DIQFa3s/qkjjXo/86zBhi5Tr3FY0JxUoCydyECgYEA0KzEzOavAv8TUeKt5mNN\nOZ46PvjqC2qixDylvNZrdEXvBODhnm7Afi27A2/pIcNAfJWvdSSEvtFimVwTRuvY\nMABQlS4z5X91LaI0cgPr6yXSt55svjeDb2SmIFmR5szL/kZDLDo4xCUMUKXXQ6kd\nn9daZcp0IxeuGeoGsXuC/D8CgYEAvYSf9yj513MdfzvAAKwyDJB6ibj8JtmpkjB4\nTMcv1FxViAzKL8mVkZYAbUT/Tpm7Ydf24OtdMpabJIbd+jaCDNQHdORfMbkrMvMa\nALkEADvIepCAjlIyacdnDu5bTLEjWewM0vGrz9d1rzhYpcq+kFgoebSWwsGbszgB\nSTlkUhECgYEAwu6xxQs1r+HiBVtwwcg/qrRhitPxpoqN1C0nUhknNe3iUzdT7DFf\nhj9n9NUE/jIsOnWF+zMLAkoNBmAZ7eWBBY41uLX5asi/CMr+nQeGyhqCFl9bC/JF\nyLhH6+5gOi9T3It8UoNs5eYJ9AiH57/CWb/NxUrzZJjJXZHdgMx1VvcCgYB1s26d\n0+cG9cl2AafHQyp6Pyi7bBW+EySLVGsCVBrSat379uWDNFEd7+kn89gT+sozhCsh\nmUtyZbLIxrIJ+dxfFzfiUwsEGJpJtE2L8VwYwQhLhn8w5L/Gjj7lOQee48yuxjlY\nsRshpBDE19vGa9paT0YkABI5toB6l+fEkE5L4QKBgQC9DvHvy2EsJOPaJ2+YOhLZ\nS+nnU5b5C0snacd2uHlbcPhi1iE0x2+FJ+nkFuQPJP+jwuoBOcVMZ6OGKrLnBj8b\nwA25dXXT9Z/5iKQ5w6Hd/9Vj9WkAXrJ9JZa3DUGUKwQFg1ubuEqSu89nAxf/3Bmy\nG3l9m9/waZQhSPw8wJUbcQ==\n-----END PRIVATE KEY-----\n',
     client_email:
       'firebase-adminsdk-pos2s@coderhouse-61825.iam.gserviceaccount.com',
     client_id: '109566843403701731411',

@@ -1,14 +1,13 @@
 import { Router } from 'express';
-import { Contenedor } from '../contenedor/contenedor.js';
+import { productosDao } from '../daos/index.js';
 import { soloParaAdmins } from '../api/admin.js';
 
 const productos = Router();
 const data = [];
-const contenedorProductos = new Contenedor('productos');
-let id = 0;
 
 const main = async () => {
-  data.push(...(await contenedorProductos.getAll()));
+  productosDao.inicializar();
+  data.push(...(await productosDao.listarAll()));
 };
 main();
 
@@ -16,24 +15,21 @@ productos.get('/', (req, res) => {
   res.json(data);
 });
 
-productos.get('/:id', (req, res) => {
-  res.json(
-    data.filter((item) => item.id === parseInt(req.params.id)).length !== 0
-      ? data.filter((item) => item.id === parseInt(req.params.id))
-      : { error: 'producto no encontrado' }
-  );
+productos.get('/:id', async (req, res) => {
+  const result = await productosDao.listar(req.params.id);
+  res.json(result ? result : { error: 'No existe el producto' });
 });
 
 productos.post('/', soloParaAdmins, async (req, res) => {
   data.push({ ...req.body, id: new Date().getTime() });
-  await contenedorProductos.save(data);
+  await productosDao.guardar(data[data.length - 1]);
   res.json(data[data.length - 1]);
 });
 
 productos.put('/:id', soloParaAdmins, async (req, res) => {
   const index = data.findIndex((item) => item.id === parseInt(req.params.id));
   data[index] = { ...data[index], ...req.body };
-  await contenedorProductos.save(data);
+  await productosDao.actualizar(data[index]);
   res.json(data[index]);
 });
 
@@ -42,7 +38,7 @@ productos.delete('/:id', soloParaAdmins, async (req, res) => {
     data.findIndex((item) => item.id === parseInt(req.params.id)),
     1
   );
-  await contenedorProductos.save(data);
+  await productosDao.eliminar(parseInt(req.params.id));
   res.json(data);
 });
 

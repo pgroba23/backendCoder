@@ -1,4 +1,4 @@
-import Contenedor from './contenedor';
+import Contenedor from './contenedor.js';
 import mongoose from 'mongoose';
 import config from '../config.js';
 

@@ -7,10 +7,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon api/server.js",
-    "start:mem": "PERS=memoria nodemon api/server.js",
-    "start:mongo": "PERS=mongodb nodemon api/server.js",
-    "start:fire": "PERS=firebase nodemon api/server.js",
-    "start:arc": "PERS=archivo nodemon api/server.js"
+    "start:mem": "cross-env PERS=memoria nodemon api/server.js",
+    "start:mongo": "cross-env PERS=mongodb nodemon api/server.js",
+    "start:fire": "cross-env PERS=firebase nodemon api/server.js",
+    "start:arc": "cross-env PERS=archivo nodemon api/server.js"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +19,8 @@
     "express": "^4.18.1",
     "firebase-admin": "^10.2.0",
     "mongoose": "^6.3.3"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3"
   }
 }

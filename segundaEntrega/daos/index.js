@@ -1,3 +1,11 @@
+import ProductosDaoMemoria from './productos/ProductosDaoMemoria.js';
+import ProductosDaoMongoDb from './productos/ProductosDaoMongoDb.js';
+import ProductosDaoFirebase from './productos/ProductosDaoFirebase.js';
+import ProductosDaoArchivo from './productos/ProductosDaoArchivo.js';
+import CarritosDaoMemoria from './carritos/CarritosDaoMemoria.js';
+import CarritosDaoMongoDb from './carritos/CarritosDaoMongoDb.js';
+import CarritosDaoFirebase from './carritos/CarritosDaoFirebase.js';
+import CarritosDaoArchivo from './carritos/CarritosDaoArchivo.js';
 import config from '../config.js';
 
 let productosDao;

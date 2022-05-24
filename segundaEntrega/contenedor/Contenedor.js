@@ -25,4 +25,6 @@ export default class Contenedor {
   async eliminarAll() {
     throw new Error('Sin implementar');
   }
+
+  async inicializar() {}
 }

@@ -10,14 +10,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/productos', productos);
 app.use('/api/carritos', carritos);
 
-// app.get('/', (req, res) => {
-//   res.send('soy genial');
-// });
-
-// app.post('/', soloParaAdmins, (req, res) => {
-//   res.send('soy genial');
-// });
-
 app.all('*', (req, res) => {
   res.status(404).json({
     error: -2,
