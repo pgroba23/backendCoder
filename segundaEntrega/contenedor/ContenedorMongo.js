@@ -7,7 +7,7 @@ await mongoose.connect(config.mongodb.cnxStr, config.mongodb.options);
 export default class ContenedorMongo extends Contenedor {
   constructor(nombre, esquema) {
     super(nombre);
-    this.db = mongoose.model(this.nombre, new mongoose.Schema(esquema));
+    this.db = mongoose.model(nombre, new mongoose.Schema(esquema));
   }
 
   async listarAll() {
