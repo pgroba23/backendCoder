@@ -1,0 +1,38 @@
+[
+  {
+    "id": "mensajes",
+    "mensaje": "Hola!",
+    "author": {
+      "email": "pablo@gmail.com",
+      "nombre": "pablo",
+      "apellido": "g",
+      "edad": "20",
+      "alias": "Blito",
+      "avatar": "url avatar (foto, logo) del usuario"
+    }
+  },
+  {
+    "id": "mensajes",
+    "mensaje": "Hola! Como andas?",
+    "author": {
+      "email": "blito@gmail.com",
+      "nombre": "carlos",
+      "apellido": "ag",
+      "edad": "24",
+      "alias": "Carlitos",
+      "avatar": "url avatar (foto, logo) del usuario"
+    }
+  },
+  {
+    "id": "mensajes",
+    "mensaje": "Todo bien! Chau",
+    "author": {
+      "email": "pablo@gmail.com",
+      "nombre": "pablo",
+      "apellido": "g",
+      "edad": "20",
+      "alias": "Blito",
+      "avatar": "url avatar (foto, logo) del usuario"
+    }
+  }
+]
