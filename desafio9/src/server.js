@@ -6,8 +6,12 @@ import { Server as Socket } from 'socket.io';
 import { Contenedor } from './contenedor.js';
 import { knexConfig as knexConfigMysql } from './mysql/knexconfig.js';
 import { knexConfig as knexConfigSqlite } from './sqlite/knexconfig.js';
-
-import { normalizedChat } from './entity/chatEntity.js';
+import {
+  chatEntity,
+  print,
+  normalize,
+  denormalize,
+} from './entity/chatEntity.js';
 
 const app = express();
 const httpServer = new HttpServer(app);
@@ -35,7 +39,7 @@ app.use(express.urlencoded({ extended: true }));
 
 io.on('connection', (socket) => {
   socket.emit('productos', productos);
-  socket.emit('chats', chats);
+  socket.emit('chats', normalize(chats, [chatEntity]));
 
   socket.on('update', (producto) => {
     productos.push({ ...producto, id: productos.length + 1 });
@@ -44,9 +48,14 @@ io.on('connection', (socket) => {
   });
 
   socket.on('chatupd', (chat) => {
-    chats.push({ ...chat, fecha: new Date().toLocaleString() });
-    contenedorChats.save({ ...chat, fecha: new Date().toLocaleString() });
-    io.sockets.emit('chats', chats);
+    const chatDenormalized = denormalize(
+      chat.result,
+      chatEntity,
+      chat.entities
+    );
+    chats.push({ ...chatDenormalized, fecha: new Date().toLocaleString() });
+    // contenedorChats.save({ ...chat, fecha: new Date().toLocaleString() });
+    io.sockets.emit('chats', normalize(chats, [chatEntity]));
   });
 });
 

@@ -1,9 +1,9 @@
-{{#if chats}}
+{{#if chatsDenormalized}}
 <div class="table-responsive">
     <ul class="mb-5" style="list-style-type: none;">
-        {{#each chats}}
+        {{#each chatsDenormalized}}
         <li>
-            <span style="font-weight: bold;color:blue">{{this.email}}<span style="color:brown"> [{{this.fecha}}]</span> : <span style="font-style: italic;color:green">{{this.mensaje}}</span></span>
+            <span style="font-weight: bold;color:blue">{{this.author.email}}<span style="color:brown"> [{{this.fecha}}]</span> : <span style="font-style: italic;color:green">{{this.mensaje}}</span></span>  <img src="{{this.author.avatar}}" alt="{{this.author.email}}" width="50px" height="50px">
         </li>
         {{/each}}
     </ul>
