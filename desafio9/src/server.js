@@ -4,8 +4,9 @@ import { engine } from 'express-handlebars';
 import { Server as HttpServer } from 'http';
 import { Server as Socket } from 'socket.io';
 import { Contenedor } from './contenedor.js';
+import { chatsDao } from './daos/index.js';
 import { knexConfig as knexConfigMysql } from './mysql/knexconfig.js';
-import { knexConfig as knexConfigSqlite } from './sqlite/knexconfig.js';
+// import { knexConfig as knexConfigSqlite } from './sqlite/knexconfig.js';
 import {
   chatEntity,
   print,
@@ -25,11 +26,12 @@ const handlebarsConfig = {
 const productos = [];
 const chats = [];
 const contenedorProductos = new Contenedor('productos', knexConfigMysql);
-const contenedorChats = new Contenedor('mensajes', knexConfigSqlite);
+// const contenedorChats = new Contenedor('mensajes', knexConfigSqlite);
 
 const main = async () => {
+  await chatsDao.inicializar();
   productos.push(...(await contenedorProductos.getAll()));
-  chats.push(...(await contenedorChats.getAll()));
+  chats.push(...(await chatsDao.listarAll()));
 };
 main();
 
@@ -47,14 +49,19 @@ io.on('connection', (socket) => {
     io.sockets.emit('productos', productos);
   });
 
-  socket.on('chatupd', (chat) => {
+  socket.on('chatupd', async (chat) => {
     const chatDenormalized = denormalize(
       chat.result,
       chatEntity,
       chat.entities
     );
+
+    await chatsDao.guardar({
+      ...chatDenormalized,
+      fecha: new Date().toLocaleString(),
+    });
+
     chats.push({ ...chatDenormalized, fecha: new Date().toLocaleString() });
-    // contenedorChats.save({ ...chat, fecha: new Date().toLocaleString() });
     io.sockets.emit('chats', normalize(chats, [chatEntity]));
   });
 });
