@@ -49,7 +49,7 @@ const sessionVar = session({
   store: MongoStore.create({
     //En Atlas connect App :  Make sure to change the node version to 2.2.12:
     // mongoUrl: `mongodb+srv://coderhouse:coderhouse@cluster0.o0eqf.mongodb.net/sesiones?authSource=admin&replicaSet=atlas-39qwv9-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`,
-    mongoUrl: `mongodb+srv://pablodb:pablodb@cluster0.rv6li.mongodb.net/sesiones?retryWrites=true&w=majority`,
+    mongoUrl: `xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`,
     mongoOptions: advancedOptions,
   }),
   /* ----------------------------------------------------- */
