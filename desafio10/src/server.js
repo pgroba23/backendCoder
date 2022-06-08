@@ -32,8 +32,8 @@ const chats = [];
 const contenedorProductos = new Contenedor('productos', knexConfigMysql);
 // const contenedorChats = new Contenedor('mensajes', knexConfigSqlite);
 
-const wrap = (middleware) => (socket, next) =>
-  middleware(socket.request, {}, next);
+// const wrap = (middleware) => (socket, next) =>
+//   middleware(socket.request, {}, next);
 
 const main = async () => {
   await chatsDao.inicializar();
@@ -54,7 +54,7 @@ const sessionVar = session({
   }),
   /* ----------------------------------------------------- */
 
-  secret: 'pablosecretsession',
+  secret: 'pablo',
   resave: false,
   saveUninitialized: false /* ,
 cookie: {
@@ -97,7 +97,7 @@ app.engine('handlebars', engine(handlebarsConfig));
 app.set('view engine', 'handlebars');
 app.set('views', './src/views');
 
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
 app.get('/productos-test', (req, res) => {
   res.render('productListTest', { productosTest });
@@ -114,10 +114,16 @@ const soloParaAdmins = (req, res, next) => {
   }
 };
 
+app.get('/', soloParaAdmins, (req, res) => {
+  const path = 'index.html';
+  res.sendFile(path, { root: 'public' });
+});
+
 app.get('/login', (req, res) => {
   if (req.query.user && req.query.pass) {
     req.session.user = req.query.user;
     req.session.pass = req.query.pass;
+    res.send(`Login Ok`);
   } else {
     res.send(`Debe pasar usuario y pass por parametro`);
   }
