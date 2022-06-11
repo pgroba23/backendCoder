@@ -30,6 +30,7 @@ const handlebarsConfig = {
 const productos = [];
 const chats = [];
 const contenedorProductos = new Contenedor('productos', knexConfigMysql);
+const scripts = [{ script: ['js/main.js'] }];
 // const contenedorChats = new Contenedor('mensajes', knexConfigSqlite);
 
 // const wrap = (middleware) => (socket, next) =>
@@ -49,7 +50,7 @@ const sessionVar = session({
   store: MongoStore.create({
     //En Atlas connect App :  Make sure to change the node version to 2.2.12:
     // mongoUrl: `mongodb+srv://coderhouse:coderhouse@cluster0.o0eqf.mongodb.net/sesiones?authSource=admin&replicaSet=atlas-39qwv9-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`,
-    mongoUrl: `xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`,
+    mongoUrl: `mongodb+srv://pablodb:pablodb@cluster0.rv6li.mongodb.net/test?authSource=admin&replicaSet=atlas-131lsw-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`,
     mongoOptions: advancedOptions,
   }),
   /* ----------------------------------------------------- */
@@ -97,8 +98,6 @@ app.engine('handlebars', engine(handlebarsConfig));
 app.set('view engine', 'handlebars');
 app.set('views', './src/views');
 
-//app.use(express.static('public'));
-
 app.get('/productos-test', (req, res) => {
   res.render('productListTest', { productosTest });
 });
@@ -107,23 +106,25 @@ const soloParaAdmins = (req, res, next) => {
   if (req.session.user) {
     next();
   } else {
-    res.status(403).json({
-      error: -1,
-      descripcion: `ruta ${req.url} método ${req.method} no autorizada`,
-    });
+    // res.status(403).json({
+    //   error: -1,
+    //   descripcion: `ruta ${req.url} método ${req.method} no autorizada`,
+    // });
+    res.render('login');
   }
 };
 
 app.get('/', soloParaAdmins, (req, res) => {
-  const path = 'index.html';
-  res.sendFile(path, { root: 'public' });
+  res.render('main', { scripts, usuario: req.session.user });
 });
 
-app.get('/login', (req, res) => {
-  if (req.query.user && req.query.pass) {
-    req.session.user = req.query.user;
-    req.session.pass = req.query.pass;
-    res.send(`Login Ok`);
+app.use(express.static('public'));
+
+app.post('/login', (req, res) => {
+  if (req.body.user && req.body.pass) {
+    req.session.user = req.body.user;
+    req.session.pass = req.body.pass;
+    res.redirect('/');
   } else {
     res.send(`Debe pasar usuario y pass por parametro`);
   }
