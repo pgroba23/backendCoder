@@ -85,7 +85,7 @@ app.get('/productos-test', (req, res) => {
 });
 
 const soloParaAdmins = (req, res, next) => {
-  if (req.session.user) {
+  if (req.isAuthenticated()) {
     next();
   } else {
     res.render('login');
@@ -93,20 +93,10 @@ const soloParaAdmins = (req, res, next) => {
 };
 
 app.get('/', soloParaAdmins, (req, res) => {
-  res.render('main', { scripts, usuario: req.user });
+  res.render('main', { scripts, usuario: req.user.username });
 });
 
 app.use(express.static('public'));
-
-// app.post('/login', (req, res) => {
-//   if (req.body.user && req.body.pass) {
-//     req.session.user = req.body.user;
-//     req.session.pass = req.body.pass;
-//     res.redirect('/');
-//   } else {
-//     res.send(`Debe pasar usuario y pass por parametro`);
-//   }
-// });
 
 app.post(
   '/registro',
@@ -116,10 +106,10 @@ app.post(
   })
 );
 app.get('/failRegister', (req, res) => {
-  res.status(400).json({ err: 'fallo el registro' });
+  res.render('register-error');
 });
-app.post('/successRegister', (req, res) => {
-  res.json({ msg: 'ok' });
+app.get('/successRegister', (req, res) => {
+  res.redirect('/');
 });
 
 // login
@@ -130,18 +120,22 @@ app.post(
     successRedirect: '/successLogin',
   })
 );
-app.post('/failLogin', (req, res) => {
-  res.status(400).json({ err: 'fallo el login' });
+app.get('/failLogin', (req, res) => {
+  res.render('login-error');
 });
-app.post('/successLogin', (req, res) => {
-  res.json({ msg: 'ok' });
+app.get('/successLogin', (req, res) => {
+  res.redirect('/');
 });
 
 app.get('/logout', (req, res) => {
-  req.session.destroy((err) => {
-    if (!err) res.send('Logout ok!');
-    else res.send({ status: 'Logout ERROR', body: err });
-  });
+  if (req.isAuthenticated()) {
+    req.logout((err) => {
+      if (err) {
+        return res.status(500).json({ err: err });
+      }
+    });
+  }
+  res.redirect('/');
 });
 
 const PORT = 8080;

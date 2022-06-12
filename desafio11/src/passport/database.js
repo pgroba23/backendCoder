@@ -19,3 +19,7 @@ export const getByName = async (username) => {
 export const save = async (data) => {
   await db.create(data);
 };
+
+export const getById = async (id) => {
+  return await db.findOne({ id }, { _id: 0, __v: 0 }).lean();
+};
