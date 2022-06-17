@@ -1,0 +1,66 @@
+<form>
+  <div
+    style='background-color: red;width:auto;height:50px;color:white;text-align:center;
+  font-size:20px;padding-top:10px;'
+  >Bienvenid@
+    {{usuario}}!!
+    <button type='submit' formaction='/logout'>Logout</button></div>
+</form>
+<h1 style='color: blue'>Ingrese datos:</h1>
+<br />
+<form method='post' id='form'>
+  <div class='form-group'>
+    <label for='title'><b>Title</b></label>
+    <input id='title' class='form-control' type='text' name='title' />
+  </div>
+  <div class='form-group'>
+    <label for='price'><b>Price</b></label>
+    <input id='price' class='form-control' type='number' name='price' />
+  </div>
+  <div class='form-group'>
+    <label for='thumbnail'><b>Thumbnail</b></label>
+    <input id='thumbnail' class='form-control' type='text' name='thumbnail' />
+  </div>
+  <button type='submit' class='btn btn-success mt-3 mb-5'>
+    Enviar
+  </button>
+</form>
+<div id='productos'></div>
+<br />
+<h3>Chat</h3>
+<hr />
+<form method='post' id='form-chat'>
+  <div class='form-group'>
+    <label for='email'><b>Email</b></label>
+    <input id='email' class='form-control' type='text' name='email' />
+  </div>
+  <div class='form-group'>
+    <label for='nombre'><b>Nombre</b></label>
+    <input id='nombre' class='form-control' type='text' name='nombre' />
+  </div>
+  <div class='form-group'>
+    <label for='apellido'><b>Apellido</b></label>
+    <input id='apellido' class='form-control' type='text' name='apellido' />
+  </div>
+  <div class='form-group'>
+    <label for='edad'><b>Edad</b></label>
+    <input id='edad' class='form-control' type='number' name='edad' />
+  </div>
+  <div class='form-group'>
+    <label for='alias'><b>Alias</b></label>
+    <input id='alias' class='form-control' type='text' name='alias' />
+  </div>
+  <div class='form-group'>
+    <label for='avatar'><b>Avatar</b></label>
+    <input id='avatar' class='form-control' type='text' name='avatar' />
+  </div>
+  <div class='form-group'>
+    <label for='mensaje'><b>Mensaje</b></label>
+    <input id='mensaje' class='form-control' type='text' name='mensaje' />
+  </div>
+  <button type='submit' class='btn btn-success mt-3 mb-2'>
+    Enviar
+  </button>
+</form>
+<hr />
+<div id='chats'></div>
