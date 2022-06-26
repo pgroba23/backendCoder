@@ -13,7 +13,6 @@ info.get('/', (req, res) => {
     PATH_de_ejecucion: process.execPath,
     PROCESS_ID: process.pid,
     Carpeta_del_proyecto: process.cwd(),
-    /*número de procesadores presentes en el servidor*/
     numero_de_procesadores: os.cpus().length,
   });
 });
