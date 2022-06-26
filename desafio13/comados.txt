@@ -1,0 +1,20 @@
+MODO FORK:
+npm start 8080 fork o npm start 8080
+
+MODO CLUSTER:
+npm start 8080 cluster
+
+PM2 modo fork
+pm2 start ./src/server.js --name="Server1" --watch -- 8081
+
+PM2 modo cluster
+pm2 start ./src/server.js --name="ServerX" --watch -- 8080 -i max
+
+NGINX primera parte
+pm2 start ./src/server.js --name="Server1" --watch -- 8080
+pm2 start ./src/server.js --name="ServerX" --watch -- 8081 -i max
+
+pm2 start ./src/server.js --name="Server2" --watch -- 8082
+pm2 start ./src/server.js --name="Server3" --watch -- 8083
+pm2 start ./src/server.js --name="Server4" --watch -- 8084
+pm2 start ./src/server.js --name="Server5" --watch -- 8085

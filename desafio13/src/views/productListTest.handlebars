@@ -1,0 +1,29 @@
+<h2 style="color:crimson;">Productos222</h2>
+{{#if productosTest}}
+<div class="table-responsive">
+    <table class="table table-dark">
+        <tr style="color: yellow;">
+            <th>Title</th>
+            <th>Price</th>
+            <th>Thumbnail</th>
+        </tr>
+        {{#each productosTest}}
+        <tr>
+            <td>
+                {{this.title}}
+            </td>
+            <td>
+                {{this.price}}
+            </td>
+            <td>
+                <img src="{{this.thumbnail}}" alt="{{this.title}}" width="50px" height="50px">
+            </td>
+        </tr>
+        {{~/each}}
+    </table>
+</div>
+{{else}}
+<h3 class="alert alert-danger">No se encontraron datos</h1>
+
+{{/if}} 
+<button class="btn btn-primary mt-3 mb-5" onclick="window.location.href='/'">Volver</button>
