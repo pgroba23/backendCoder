@@ -167,7 +167,8 @@ app.all('*', (req, res) => {
 //   workerFunction(httpServer);
 // }
 
-const PORT = parseInt(process.argv[2]) || 8080;
+//const PORT = parseInt(process.argv[2]) || 8080;
+const PORT = process.env.PORT || 8080;
 
 const connectedServer = httpServer.listen(PORT, () => {
   logger.info(

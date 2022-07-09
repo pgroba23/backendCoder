@@ -3,8 +3,9 @@ export default {
     path: './src/DB',
   },
   mongodb: {
-    cnxStr:
-      'mongodb://admin:mongopassword@localhost:27017/coderhouse?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false',
+    //cnxStr:
+    //'mongodb://admin:mongopassword@localhost:27017/coderhouse?authSource=admin&readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false',
+    cnxStr: `mongodb+srv://pablodb:pablodb@cluster0.rv6li.mongodb.net/test?authSource=admin&replicaSet=atlas-131lsw-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true`,
     options: {
       useNewUrlParser: true,
       useUnifiedTopology: true,

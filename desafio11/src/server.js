@@ -28,10 +28,6 @@ const productos = [];
 const chats = [];
 const contenedorProductos = new Contenedor('productos', knexConfigMysql);
 const scripts = [{ script: ['js/main.js'] }];
-// const contenedorChats = new Contenedor('mensajes', knexConfigSqlite);
-
-// const wrap = (middleware) => (socket, next) =>
-//   middleware(socket.request, {}, next);
 
 const main = async () => {
   await chatsDao.inicializar();

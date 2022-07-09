@@ -4,8 +4,8 @@ import { engine } from 'express-handlebars';
 import { Server as HttpServer } from 'http';
 import { Server as Socket } from 'socket.io';
 import { Contenedor } from './contenedor.js';
-import { chatsDao } from './daos/index.js';
-import { knexConfig as knexConfigMysql } from './mysql/knexconfig.js';
+import { chatsDao, productosDao } from './daos/index.js';
+// import { knexConfig as knexConfigMysql } from './mysql/knexconfig.js';
 import { passport, sessionVar } from './passport/passport.js';
 import { workerFunction } from './cluster/worker.js';
 import { clusterFunction } from './cluster/cluster.js';
@@ -31,12 +31,14 @@ const handlebarsConfig = {
 
 const productos = [];
 const chats = [];
-const contenedorProductos = new Contenedor('productos', knexConfigMysql);
+//const contenedorProductos = new Contenedor('productos', knexConfigMysql);
 const scripts = [{ script: ['js/main.js'] }];
 
 const main = async () => {
   await chatsDao.inicializar();
-  productos.push(...(await contenedorProductos.getAll()));
+  await productosDao.inicializar();
+  //productos.push(...(await contenedorProductos.getAll()));
+  productos.push(...(await productosDao.listarAll()));
   chats.push(...(await chatsDao.listarAll()));
 };
 main();
@@ -56,7 +58,8 @@ io.on('connection', (socket) => {
 
   socket.on('update', (producto) => {
     productos.push({ ...producto, id: productos.length + 1 });
-    contenedorProductos.save(producto);
+    //contenedorProductos.save(producto);
+    productosDao.guardar({ ...producto, id: new Date().getTime().toString() });
     io.sockets.emit('productos', productos);
   });
 

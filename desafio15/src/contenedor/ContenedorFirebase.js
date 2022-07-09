@@ -1,4 +1,4 @@
-import Contenedor from './contenedor.js';
+import Contenedor from './Contenedor.js';
 import admin from 'firebase-admin';
 import config from '../../config.js';
 

@@ -7,7 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "inicializar": "node src/crearTablas.js",
-    "start": "npm run inicializar && nodemon src/server.js"
+    "start:normal": "npm run inicializar && nodemon src/server.js",
+    "start": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "",

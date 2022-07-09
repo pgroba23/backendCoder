@@ -1,5 +1,5 @@
 import fs from 'fs';
-import Contenedor from './contenedor.js';
+import Contenedor from './Contenedor.js';
 
 export default class ContenedorArchivo extends Contenedor {
   constructor(nombre, ruta = './') {
