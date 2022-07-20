@@ -19,6 +19,7 @@ login.post(
   })
 );
 login.get('/failRegister', (req, res) => {
+  console.log(req);
   logger.warn(
     `Ruta: ${req.path} - Metodo: ${req.method} - error al registrar usuario`
   );

@@ -4,6 +4,7 @@ import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import { getByName, save, getById } from './database.js';
 import dotenv from '../dotenv/dotenv.js';
+import { middlewareDeUnArchivo } from '../multer/procesamientoArchivos.js';
 
 const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
@@ -28,6 +29,7 @@ passport.use(
   'registro',
   new Strategy(
     { passReqToCallback: true },
+    middlewareDeUnArchivo,
     async (req, username, password, done) => {
       try {
         const result = await getByName(username);
@@ -38,8 +40,8 @@ passport.use(
 
       let usuario = {
         ...req.body,
+        avatar: req.file.path,
         id: new Date().getTime(),
-        telefono: `+549${req.body.telefono}`,
       };
       try {
         await save(usuario);
