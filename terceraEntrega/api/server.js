@@ -3,6 +3,7 @@ import { productos } from '../routes/productos.js';
 import { carritos } from '../routes/carritos.js';
 import { pedidos } from '../routes/pedidos.js';
 import { login } from '../routes/login.js';
+import { avatar } from '../routes/avatar.js';
 import { clusterFunction } from '../cluster/cluster.js';
 import { workerFunction } from '../cluster/worker.js';
 import logger from '../log4js/logger.js';
@@ -17,6 +18,7 @@ app.use('/', login);
 app.use('/api/productos', productos);
 app.use('/api/carritos', carritos);
 app.use('/api/pedidos', pedidos);
+app.use('/api/avatar', avatar);
 
 app.all('*', (req, res) => {
   logger.warn(

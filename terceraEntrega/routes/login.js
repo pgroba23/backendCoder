@@ -92,6 +92,7 @@ login.get('/successLogin', async (req, res) => {
     usuario: req.user,
     carrito,
     productos,
+    avatar: '/api/avatar',
   });
 });
 

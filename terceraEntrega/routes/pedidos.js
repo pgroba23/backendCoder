@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import { carritosDao } from '../daos/index.js';
 import { transporter } from '../nodemailer/config.js';
-import dotenv from '../dotenv/dotenv.js';
-import logger from '../log4js/logger.js';
 import { clienteSms } from '../messageSenders/smsSender/index.js';
 import { clienteWsp } from '../messageSenders/wspSender/index.js';
 import { smsAdmin, twilioWhatsappPhoneNumber } from '../config.js';
+import dotenv from '../dotenv/dotenv.js';
+import logger from '../log4js/logger.js';
 
 const pedidos = Router();
 
@@ -35,6 +35,11 @@ pedidos.get('/venta', async (req, res) => {
   });
 
   //vaciar carrito
+  const carritoVacio = {
+    id: user.id,
+    productos: [],
+  };
+  await carritosDao.actualizar(carritoVacio);
 
   res.status(200).json({
     error: 0,

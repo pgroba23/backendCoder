@@ -4,7 +4,7 @@ import session from 'express-session';
 import MongoStore from 'connect-mongo';
 import { getByName, save, getById } from './database.js';
 import dotenv from '../dotenv/dotenv.js';
-import { middlewareDeUnArchivo } from '../multer/procesamientoArchivos.js';
+import bCrypt from 'bcrypt';
 
 const advancedOptions = { useNewUrlParser: true, useUnifiedTopology: true };
 
@@ -29,7 +29,6 @@ passport.use(
   'registro',
   new Strategy(
     { passReqToCallback: true },
-    middlewareDeUnArchivo,
     async (req, username, password, done) => {
       try {
         const result = await getByName(username);
@@ -40,7 +39,7 @@ passport.use(
 
       let usuario = {
         ...req.body,
-        avatar: req.file.path,
+        password: createHash(req.body.password),
         id: new Date().getTime(),
       };
       try {
@@ -66,7 +65,7 @@ passport.use(
       return done(error);
     }
 
-    if (usuario.password !== password) {
+    if (!isValidPassword(usuario, password)) {
       return done(null, false, { message: 'La contraseña es incorrecta' });
     }
     done(null, usuario);
@@ -81,5 +80,13 @@ passport.deserializeUser(async (id, done) => {
   const user = await getById(id);
   done(null, user);
 });
+
+const isValidPassword = (user, password) => {
+  return bCrypt.compareSync(password, user.password);
+};
+
+const createHash = (password) => {
+  return bCrypt.hashSync(password, bCrypt.genSaltSync(10), null);
+};
 
 export { passport, sessionVar };
