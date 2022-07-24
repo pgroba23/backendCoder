@@ -1,0 +1,17 @@
+Se nota una leve diferencia a favor de no tener el console.log, pero no es tan grande.
+Supongo que cuantas mas peticiones se hagan por llegada, aumentaria en forma exponencial.
+
+Con el console.log
+http.request_rate: ............................................................. 500/sec
+
+   ticks  total  nonlib   name
+   2426    6.2%          C:\Program Files\nodejs\node.exe
+
+Sin el console.log
+http.request_rate: ............................................................. 579/sec
+
+  ticks  total  nonlib   name
+   2329    2.4%          C:\Program Files\nodejs\node.exe
+
+Evidentemente hay un atasco ahi, pero al menos para estos valores es despreciable.
+Se ve tambien una diferencia, leve, en la cantidad de ticks pero a nivel % se nota un salto mayor.
