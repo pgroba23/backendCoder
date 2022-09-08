@@ -2,9 +2,10 @@ import { Router } from 'express';
 import { register, login } from '../controllers/loginController.js';
 
 export const loginRoute = Router();
+export const registerRoute = Router();
 
 // REGISTER
-loginRoute.post('/register', register);
+registerRoute.post('/', register);
 
 // LOGIN
 loginRoute.post('/login', login);

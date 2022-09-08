@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { soloParaAdmins } from '../middlewares/admin.js';
+import { auth } from '../middlewares/auth.js';
 import {
 	getAll,
 	getAllbyId,
@@ -14,10 +15,10 @@ productos.get('/', getAll);
 
 productos.get('/:id', getAllbyId);
 
-productos.post('/', soloParaAdmins, savePrd);
+productos.post('/', auth, soloParaAdmins, savePrd);
 
-productos.put('/:id', soloParaAdmins, updatePrd);
+productos.put('/:id', auth, soloParaAdmins, updatePrd);
 
-productos.delete('/:id', soloParaAdmins, deletePrd);
+productos.delete('/:id', auth, soloParaAdmins, deletePrd);
 
 export { productos };

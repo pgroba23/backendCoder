@@ -2,7 +2,7 @@ import express from 'express';
 /* 
 import { carritos } from '../routes/carritos.js';
 import { pedidos } from '../routes/pedidos.js';*/
-import { loginRoute } from '../routes/login.js';
+import { loginRoute, registerRoute } from '../routes/login.js';
 import { productos } from '../routes/productos.js';
 import { avatar } from '../routes/avatar.js';
 import { clusterFunction } from '../cluster/cluster.js';
@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 app.use('/', loginRoute);
+app.use('/api/users', registerRoute);
 app.use('/api/images', avatar);
 app.use('/api/products', productos);
 
