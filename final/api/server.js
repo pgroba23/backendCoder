@@ -1,7 +1,7 @@
 import express from 'express';
-/* 
+
+import { pedidos } from '../routes/pedidos.js';
 import { carritos } from '../routes/carritos.js';
-import { pedidos } from '../routes/pedidos.js';*/
 import { loginRoute, registerRoute } from '../routes/login.js';
 import { productos } from '../routes/productos.js';
 import { avatar } from '../routes/avatar.js';
@@ -19,12 +19,8 @@ app.use('/', loginRoute);
 app.use('/api/users', registerRoute);
 app.use('/api/images', avatar);
 app.use('/api/products', productos);
-
-/*
-
-app.use('/api/carritos', carritos);
-app.use('/api/pedidos', pedidos);
- */
+app.use('/api/shoppingcartproducts', carritos);
+app.use('/api/orders', pedidos);
 
 app.all('*', (req, res) => {
 	logger.warn(

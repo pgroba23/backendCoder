@@ -1,6 +1,8 @@
 import jwt from 'jsonwebtoken';
 import UsuariosRepo from '../persistencia/repositorio/UsuariosRepo.js';
+import CarritosRepo from '../persistencia/repositorio/CarritosRepo.js';
 import Usuario from '../negocio/Usuario.js';
+import Carrito from '../negocio/Carrito.js';
 import bCrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 
@@ -22,10 +24,10 @@ const createHash = (password) => {
 // REGISTER
 export const register = async (req, res) => {
 	const usuariosRepo = new UsuariosRepo();
+	const carritosRepo = new CarritosRepo();
 	const { email, password, name, lastname, phone, image } = req.body;
 
 	const usuarios = await usuariosRepo.listarAll();
-	//console.log(usuarios);
 	const yaExiste = usuarios.find((usuario) => usuario.email == email);
 	if (yaExiste) {
 		return res.json({ error: 'ya existe ese usuario' });
@@ -41,7 +43,13 @@ export const register = async (req, res) => {
 		image,
 	};
 
+	const carrito = new Carrito({
+		id: usuario.id,
+		prods: [],
+	});
+
 	await usuariosRepo.guardar(new Usuario(usuario));
+	await carritosRepo.guardar(carrito);
 	const access_token = generateToken(usuario);
 
 	res.json({ access_token });

@@ -14,10 +14,12 @@ const productosSchema = new mongoose.Schema({
 	cant: { type: Number, required: true },
 });
 
-class CarritoDaoMongoDb extends ContenedorMongo {
+class PedidoDaoMongoDb extends ContenedorMongo {
 	constructor() {
-		super('carritos', {
+		super('pedidos', {
 			id: { type: String, required: true },
+			fecha: { type: String, required: true },
+			idCliente: { type: String, required: true },
 			prods: {
 				type: [productosSchema],
 				default: undefined,
@@ -27,4 +29,4 @@ class CarritoDaoMongoDb extends ContenedorMongo {
 	}
 }
 
-export default CarritoDaoMongoDb;
+export default PedidoDaoMongoDb;
