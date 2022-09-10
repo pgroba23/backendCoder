@@ -1,2 +1,5 @@
 [2022-09-07T05:37:56.117] [WARN] default - Ruta: /api/users - Metodo: POST - /api/users no implementada
 [2022-09-09T07:01:26.720] [WARN] default - Ruta: /api/shoppingcartproducts - Metodo: GET - /api/shoppingcartproducts no implementada
+[2022-09-10T07:18:42.777] [WARN] prod - Ruta: /socket.io/socket.io.js - Metodo: GET - /socket.io/socket.io.js no implementada
+[2022-09-10T07:18:42.977] [WARN] prod - Ruta: /favicon.ico - Metodo: GET - /favicon.ico no implementada
+[2022-09-10T07:19:22.599] [WARN] prod - Ruta: /socket.io/socket.io.js - Metodo: GET - /socket.io/socket.io.js no implementada

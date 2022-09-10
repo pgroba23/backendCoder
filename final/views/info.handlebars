@@ -1,0 +1,74 @@
+<h2 style="color:crimson;">Info</h2>
+{{#if info}}
+<div class="table-responsive">
+    <table class="table table-dark">
+        <tr>
+            <td>
+                Argumentos de entrada
+            </td>
+            <td>
+                {{info.argumentos_entrada}}
+            </td>
+        </tr>
+         <tr>
+            <td>
+                SO
+            </td>
+            <td>
+                {{info.SO}}
+            </td>
+        </tr>
+         <tr>
+            <td>
+                Version Node
+            </td>
+            <td>
+                {{info.version_node}}
+            </td>
+        </tr>
+         <tr>
+            <td>
+                RSS
+            </td>
+            <td>
+                {{info.RSS}}
+            </td>
+        </tr>
+         <tr>
+            <td>
+                Path
+            </td>
+            <td>
+                {{info.PATH_de_ejecucion}}
+            </td>
+        </tr>
+         <tr>
+            <td>
+                Process ID
+            </td>
+            <td>
+                {{info.PROCESS_ID}}
+            </td>
+        </tr>
+         <tr>
+            <td>
+                Carpeta de Proyecto
+            </td>
+            <td>
+                {{info.Carpeta_del_proyecto}}
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Nro Procesadores
+            </td>
+            <td>
+                {{info.numero_de_procesadores}}
+            </td>
+        </tr>
+    </table>
+</div>
+{{else}}
+<h3 class="alert alert-danger">No se encontraron datos</h1>
+
+{{/if}} 
